@@ -255,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.Components.NetworkRigidbody2D
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkRigidbodyBaseExpanded: 0
-  UseRigidBodyForMotion: 0
+  UseRigidBodyForMotion: 1
   AutoUpdateKinematicState: 1
   AutoSetKinematicOnDespawn: 1
 --- !u!114 &8558062029944897647
@@ -274,6 +274,6 @@ MonoBehaviour:
   speed: 5
   jumpForce: 300
   jumpVelocity: 5
-  jumpCount: 2
+  jumpCount: 3
   jumpCurrent: 0
   jumpCD: 10
