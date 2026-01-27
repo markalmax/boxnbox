@@ -6,7 +6,7 @@ public class PlayerMovement : NetworkBehaviour
     public float speed = 5f;
     public float jumpForce = 60f;
     public float jumpVelocity = 5f;
-    public float jumpCount = 3f;
+    public float jumpCount = 2f;
     public float jumpCurrent = 0f;
     public float jumpCD = 10f;
     private Rigidbody2D rb;
@@ -33,6 +33,6 @@ public class PlayerMovement : NetworkBehaviour
     }
     bool IsGrounded()
     {
-        return Physics2D.Raycast(transform.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
+        return Physics2D.Raycast(transform.position, Vector2.down, 0.6f, LayerMask.GetMask("Ground"));
     }
 }
