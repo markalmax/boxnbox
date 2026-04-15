@@ -14,6 +14,8 @@ namespace Unity.Multiplayer.Center.NetcodeForGameObjectsExample
         [SerializeField]
         Button m_StartClientButton;
         [SerializeField]
+        Button m_DisconnectButton;
+        [SerializeField]
         TMP_InputField m_IP;
         [SerializeField]
         TMP_InputField m_Port;
@@ -23,6 +25,7 @@ namespace Unity.Multiplayer.Center.NetcodeForGameObjectsExample
         {
             m_StartHostButton.onClick.AddListener(StartHost);
             m_StartClientButton.onClick.AddListener(StartClient);
+            m_DisconnectButton.onClick.AddListener(Disconnect);
             m_IP.onEndEdit.AddListener(delegate { ChagneIP(); });
             m_Port.onEndEdit.AddListener(delegate { ChagneIP(); });
         }
@@ -37,6 +40,10 @@ namespace Unity.Multiplayer.Center.NetcodeForGameObjectsExample
         {
             NetworkManager.Singleton.StartHost();
             DeactivateButtons();
+        }
+        void Disconnect()
+        {
+            NetworkManager.Singleton.Shutdown();
         }
         void ChagneIP()
         {

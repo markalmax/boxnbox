@@ -1973,7 +1973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1060039661
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3036,6 +3036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Unity.Multiplayer.Center.NetcodeForGameObjectsExample.TemporaryUI
   m_StartHostButton: {fileID: 1488089031}
   m_StartClientButton: {fileID: 2102850256}
+  m_DisconnectButton: {fileID: 0}
   m_IP: {fileID: 1176087314}
   m_Port: {fileID: 604548175}
   m_PlayerName: {fileID: 1060039662}
