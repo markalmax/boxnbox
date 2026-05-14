@@ -4,6 +4,7 @@ using Players;
 public class Bullet : MonoBehaviour
 {
     public float damage;
+    public ulong ownerID;
     private void Start()
     {
         Destroy(gameObject, 5f);
@@ -14,9 +15,14 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.GetComponent(typeof(Actors)) is Actors)
         {
             Actors actor = collision.gameObject.GetComponent(typeof(Actors)) as Actors;
+            if (actor.NetworkObject.OwnerClientId == ownerID)return;
             actor.Damage(damage);
             Destroy(gameObject);            
         }
+    }
+    public void SetOwner(ulong id)
+    {
+        ownerID = id;
     }
     public void SetDamage(float f)
     {

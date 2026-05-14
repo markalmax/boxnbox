@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class Gun : NetworkBehaviour
 {
     public GameObject bulletPrefab;
     public float bulletSpeed;
@@ -33,10 +34,15 @@ public class Gun : MonoBehaviour
         Debug.Log("Firing");
         Vector3 vec = new Vector3(Random.Range(0f-spread, spread), Random.Range(0f - spread, spread), 0);
         GameObject bullet = Instantiate(bulletPrefab, base.transform.position, base.transform.rotation);
-        //bullet.transform.localScale *= 1f + damage / 15f;
+        bullet.transform.localScale *= 1f + damage / 15f;
         bullet.GetComponent<Rigidbody2D>().linearVelocity = base.transform.up * bulletSpeed + vec;
         bullet.GetComponent<Bullet>().SetDamage(damage);
         bullet.GetComponent<Bullet>().SetColor(color);
+        var ownerNetworkObject = GetComponentInParent<NetworkObject>();
+        if (ownerNetworkObject != null)
+        {
+            bullet.GetComponent<Bullet>().SetOwner(ownerNetworkObject.OwnerClientId);
+        }
     }
     public void SetBulletColor(Color c)
     {
