@@ -6,6 +6,7 @@ namespace Players
     {
         private bool isRight;
         private bool canJump;
+        private bool CanShoot = true;
         private bool isMoving;
         private bool IsGrounded;
         public float speed = 2700f;
@@ -13,12 +14,13 @@ namespace Players
         public float jumpForce = 850f;
         private float jumps;
         public float maxJumps;
-        private float jumpCount;
-        private float health;
+        [SerializeField]private float health;
         public float maxHealth;
+        public GameObject gun;
+        public Gun gunScript;
         private Rigidbody2D rb;
         private SpriteRenderer sr;
-        public Transform footer;
+        private Color color;
         public LayerMask ground;
         protected void Start()
         {
@@ -27,6 +29,8 @@ namespace Players
             health = maxHealth;
             jumps = maxJumps;
             isRight = true;
+            color = sr.color;
+            gunScript.SetBulletColor(color);
         }
         private void FixedUpdate()
         {
@@ -57,7 +61,6 @@ namespace Players
             rb.linearVelocityY = jumpForce;
 			rb.AddForce(Vector2.up * jumpForce);
 			jumps--;
-            Debug.Log(IsGrounded);
         }
         private void Friction()
         {
@@ -70,6 +73,22 @@ namespace Players
         protected void NotMoving()
         {
             isMoving = false;
+        }
+        public void Damage(float damage)
+        {
+            health -= damage;
+            if (health <= 0) Die();
+            Debug.Log(health);
+        }
+        public void Die()
+        {
+            
+        }
+        protected void Shoot()
+        {
+            if (!CanShoot) return;
+            gunScript.Fire();
+            rb.AddForce(-gun.transform.up * gunScript.recoil);
         }
     }
 }
