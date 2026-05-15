@@ -1,7 +1,8 @@
 using UnityEngine;
+using Unity.Netcode;
 using Players;
 
-public class Bullet : MonoBehaviour
+public class Bullet : NetworkBehaviour
 {
     public float damage;
     public ulong ownerID;
