@@ -15,35 +15,53 @@ public class Gun : NetworkBehaviour
     private Color color;
     public void Fire()
     {
-        if(Armed)
+        if (!Armed) return;
+
+        if (IsServer)
         {
-            for (int i = 0; i < amount; i++)
-            {   
-                SpawnBullet();
-            }
-            Armed=false;
-            Invoke("Arm", fireRate);
+            FireOnServer();
+        }
+        else
+        {
+            FireServerRpc();
+        }
+
+        Armed = false;
+        Invoke("Arm", fireRate);
+    }
+    [ServerRpc(RequireOwnership = false)]
+    private void FireServerRpc()
+    {
+        FireOnServer();
+    }
+    private void FireOnServer()
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            SpawnBullet();
         }
     }
     private void Arm()
     {
-        Armed=true;
+        Armed = true;
     }
     private void SpawnBullet()
     {
         Debug.Log("Firing");
         Vector3 vec = new Vector3(Random.Range(0f-spread, spread), Random.Range(0f - spread, spread), 0);
         GameObject bullet = Instantiate(bulletPrefab, base.transform.position, base.transform.rotation);
+        NetworkObject bulletNetworkObject = bullet.GetComponent<NetworkObject>();
+        bulletNetworkObject.Spawn(true);
+
         NetworkObject ownerNetworkObject = GetComponentInParent<NetworkObject>();
-        ownerNetworkObject.Spawn(true);
+        Bullet bulletComponent = bullet.GetComponent<Bullet>();
         if (ownerNetworkObject != null)
         {
-            bullet.GetComponent<Bullet>().SetOwner(ownerNetworkObject.OwnerClientId);
+            bulletComponent.Initialize(ownerNetworkObject.OwnerClientId, damage);
         }
         bullet.transform.localScale *= 1f + damage / 15f;
         bullet.GetComponent<Rigidbody2D>().linearVelocity = base.transform.up * bulletSpeed + vec;
-        bullet.GetComponent<Bullet>().SetDamage(damage);
-        bullet.GetComponent<Bullet>().SetColor(color);
+        bulletComponent.SetColor(color);
     }
     public void SetBulletColor(Color c)
     {

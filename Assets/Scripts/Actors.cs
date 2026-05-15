@@ -20,6 +20,7 @@ namespace Players
         public Gun gunScript;
         private Rigidbody2D rb;
         private SpriteRenderer sr;
+        private NetworkObject no;
         private Color color;
         public LayerMask ground;
         protected void Start()
@@ -30,6 +31,7 @@ namespace Players
             jumps = maxJumps;
             isRight = true;
             color = sr.color;
+            no = GetComponent<NetworkObject>();
             gunScript.SetBulletColor(color);
         }
         private void FixedUpdate()
@@ -77,8 +79,18 @@ namespace Players
         public void Damage(float damage)
         {
             health -= damage;
+            DamageFlash();
             if (health <= 0) Die();
-            Debug.Log(health);
+            Debug.Log(no.OwnerClientId + " took " + damage + " damage, health is " + health);
+        }
+        public void DamageFlash()
+        {
+            sr.color = Color.red;
+            Invoke("ResetColor", 0.1f);
+        }
+        private void ResetColor()
+        {
+            sr.color = color;
         }
         public void Die()
         {
