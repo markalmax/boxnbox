@@ -14,8 +14,8 @@ namespace Players
         public float jumpForce = 850f;
         private float jumps;
         public float maxJumps;
-        [SerializeField]private float health;
-        public float maxHealth;
+        public NetworkVariable<float> health = new NetworkVariable<float>(100f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+        public float maxHealth = 100f;
         public GameObject gun;
         public Gun gunScript;
         private Rigidbody2D rb;
@@ -27,7 +27,7 @@ namespace Players
         {
             rb = GetComponent<Rigidbody2D>();
             sr = GetComponent<SpriteRenderer>();
-            health = maxHealth;
+            health.Value = maxHealth;
             jumps = maxJumps;
             isRight = true;
             color = sr.color;
@@ -78,10 +78,10 @@ namespace Players
         }
         public void Damage(float damage)
         {
-            health -= damage;
+            health.Value -= damage;
             DamageFlash();
-            if (health <= 0) Die();
-            Debug.Log(no.OwnerClientId + " took " + damage + " damage, health is " + health);
+            if (health.Value <= 0f) Die();
+            Debug.Log(no.OwnerClientId + " took " + damage + " damage, health is " + health.Value);
         }
         public void DamageFlash()
         {

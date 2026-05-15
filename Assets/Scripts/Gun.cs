@@ -29,7 +29,7 @@ public class Gun : NetworkBehaviour
         Armed = false;
         Invoke("Arm", fireRate);
     }
-    [ServerRpc(RequireOwnership = false)]
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
     private void FireServerRpc()
     {
         FireOnServer();
