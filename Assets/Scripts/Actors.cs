@@ -23,6 +23,7 @@ namespace Players
         private NetworkObject no;
         private Color color;
         public LayerMask ground;
+        private Vector2 scale;
         protected void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -33,6 +34,7 @@ namespace Players
             color = sr.color;
             no = GetComponent<NetworkObject>();
             gunScript.SetBulletColor(color);
+            scale = base.transform.localScale;
         }
         private void FixedUpdate()
         {
@@ -44,6 +46,14 @@ namespace Players
             if(jumps < maxJumps && IsGrounded)
             {
                 jumps = maxJumps;
+            }
+            if(base.transform.localScale.y < scale.y)
+            {
+                base.transform.localScale = new Vector2(base.transform.localScale.x, base.transform.localScale.y + 0.03f);
+            }
+            if(base.transform.localScale.x < scale.x)
+            {
+                base.transform.localScale = new Vector2(base.transform.localScale.x + 0.03f, base.transform.localScale.y);
             }
         }
         protected void Move(int dir)
@@ -60,7 +70,16 @@ namespace Players
         protected void Jump()
         {
             if (jumps < 1) return;
-            rb.linearVelocityY = jumpForce;
+            float num = base.transform.rotation.eulerAngles.z % 180f;
+			if (num < 45f || num > 135f)
+			{
+				base.transform.localScale = new Vector2(base.transform.localScale.x, base.transform.localScale.y / 4f);
+			}
+			else
+			{
+				base.transform.localScale = new Vector2(base.transform.localScale.x / 4f, base.transform.localScale.y);
+			}
+            rb.linearVelocityY=0;
 			rb.AddForce(Vector2.up * jumpForce);
 			jumps--;
         }

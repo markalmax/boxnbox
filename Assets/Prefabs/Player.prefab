@@ -214,7 +214,7 @@ MonoBehaviour:
   AutoOwnerAuthorityTickOffset: 1
   PositionInterpolationType: 1
   RotationInterpolationType: 1
-  ScaleInterpolationType: 0
+  ScaleInterpolationType: 1
   PositionLerpSmoothing: 1
   PositionMaxInterpolationTime: 0.1
   RotationLerpSmoothing: 1
@@ -230,8 +230,8 @@ MonoBehaviour:
   SyncRotAngleX: 0
   SyncRotAngleY: 0
   SyncRotAngleZ: 1
-  SyncScaleX: 0
-  SyncScaleY: 0
+  SyncScaleX: 1
+  SyncScaleY: 1
   SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
@@ -242,7 +242,7 @@ MonoBehaviour:
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
-  SlerpPosition: 0
+  SlerpPosition: 1
 --- !u!114 &8054457626612814000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,9 +288,10 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   speed: 1000
   maxSpeed: 10
-  jumpForce: 10
+  jumpForce: 450
   maxJumps: 1
-  health: 0
+  health:
+    m_InternalValue: 100
   maxHealth: 100
   gun: {fileID: 7084080270209258859}
   gunScript: {fileID: 1419158230852563601}
