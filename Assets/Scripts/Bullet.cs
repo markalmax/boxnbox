@@ -8,6 +8,7 @@ public class Bullet : NetworkBehaviour
     public NetworkVariable<ulong> ownerID = new NetworkVariable<ulong>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     private void Start()
     {
+        GetComponent<Rigidbody2D>().gravityScale = 0f;
         if (IsServer)
         {
             Destroy(gameObject, 5f);
