@@ -48,6 +48,9 @@ MonoBehaviour:
   m_StartClientButton: {fileID: 0}
   m_StartServerButton: {fileID: 0}
   m_DisconnectButton: {fileID: 0}
+  m_ExitButton: {fileID: 0}
+  m_ResumeButton: {fileID: 0}
   m_IP: {fileID: 0}
   m_Port: {fileID: 0}
   m_PlayerName: {fileID: 0}
+  m_PauseMenu: {fileID: 0}

@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2511160057494890294, guid: 7f526a7f46970a2489aaa71cd4558ded, type: 3}
       propertyPath: m_text
-      value: Client
+      value: Join
       objectReference: {fileID: 0}
     - target: {fileID: 5721775712664689292, guid: 7f526a7f46970a2489aaa71cd4558ded, type: 3}
       propertyPath: m_Pivot.x
@@ -526,7 +526,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2511160057494890294, guid: 7f526a7f46970a2489aaa71cd4558ded, type: 3}
       propertyPath: m_text
-      value: Settings
+      value: Placeholder button
+      objectReference: {fileID: 0}
+    - target: {fileID: 2511160057494890294, guid: 7f526a7f46970a2489aaa71cd4558ded, type: 3}
+      propertyPath: m_fontSize
+      value: 19.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2511160057494890294, guid: 7f526a7f46970a2489aaa71cd4558ded, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3565527890871515655, guid: 7f526a7f46970a2489aaa71cd4558ded, type: 3}
       propertyPath: m_Interactable
@@ -1463,6 +1471,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5721775712664689292, guid: 7f526a7f46970a2489aaa71cd4558ded, type: 3}
   m_PrefabInstance: {fileID: 1354564762}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1397707095 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3565527890871515655, guid: 7f526a7f46970a2489aaa71cd4558ded, type: 3}
+  m_PrefabInstance: {fileID: 1354564762}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1471896662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1655,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1588083678 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3565527890871515655, guid: 7f526a7f46970a2489aaa71cd4558ded, type: 3}
+  m_PrefabInstance: {fileID: 794877763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1628365205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2476,6 +2506,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5721775712664689292, guid: 7f526a7f46970a2489aaa71cd4558ded, type: 3}
   m_PrefabInstance: {fileID: 4060912168585419902}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4060912168585419904 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3565527890871515655, guid: 7f526a7f46970a2489aaa71cd4558ded, type: 3}
+  m_PrefabInstance: {fileID: 4060912168585419902}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &7180710848721623012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2550,13 +2591,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 826687080}
     - target: {fileID: 5169808380991356839, guid: da40febf41dc475478090679881f99b8, type: 3}
+      propertyPath: m_PauseMenu
+      value: 
+      objectReference: {fileID: 1817204533}
+    - target: {fileID: 5169808380991356839, guid: da40febf41dc475478090679881f99b8, type: 3}
+      propertyPath: m_ExitButton
+      value: 
+      objectReference: {fileID: 4060912168585419904}
+    - target: {fileID: 5169808380991356839, guid: da40febf41dc475478090679881f99b8, type: 3}
       propertyPath: m_PlayerName
       value: 
       objectReference: {fileID: 1727692726}
     - target: {fileID: 5169808380991356839, guid: da40febf41dc475478090679881f99b8, type: 3}
+      propertyPath: m_ResumeButton
+      value: 
+      objectReference: {fileID: 1588083678}
+    - target: {fileID: 5169808380991356839, guid: da40febf41dc475478090679881f99b8, type: 3}
       propertyPath: m_StartHostButton
       value: 
-      objectReference: {fileID: 581510682}
+      objectReference: {fileID: 1397707095}
     - target: {fileID: 5169808380991356839, guid: da40febf41dc475478090679881f99b8, type: 3}
       propertyPath: m_DisconnectButton
       value: 
