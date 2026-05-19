@@ -221,7 +221,7 @@ MonoBehaviour:
   RotationMaxInterpolationTime: 0.1
   ScaleLerpSmoothing: 1
   ScaleMaxInterpolationTime: 0.1
-  AuthorityMode: 0
+  AuthorityMode: 1
   TickSyncChildren: 1
   UseUnreliableDeltas: 0
   SyncPositionX: 1
@@ -407,12 +407,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7312927037113707836, guid: 2cd49e9d7272b1349ae6eec762f90608, type: 3}
   bulletSpeed: 20
   fireRate: 0.3
-  recoil: 150
+  recoil: 50
   damage: 5
   amount: 1
-  spread: 5
+  spread: 1
   Armed: 1
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &6289178412157974201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +428,7 @@ MonoBehaviour:
   NetworkTransformExpanded: 1
   AutoOwnerAuthorityTickOffset: 1
   PositionInterpolationType: 0
-  RotationInterpolationType: 0
+  RotationInterpolationType: 1
   ScaleInterpolationType: 0
   PositionLerpSmoothing: 1
   PositionMaxInterpolationTime: 0.1
@@ -437,7 +436,7 @@ MonoBehaviour:
   RotationMaxInterpolationTime: 0.1
   ScaleLerpSmoothing: 1
   ScaleMaxInterpolationTime: 0.1
-  AuthorityMode: 0
+  AuthorityMode: 1
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 0

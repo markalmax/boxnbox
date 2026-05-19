@@ -28,12 +28,11 @@ namespace Players
         {
             rb = GetComponent<Rigidbody2D>();
             sr = GetComponent<SpriteRenderer>();
+            no = GetComponent<NetworkObject>();
             health.Value = maxHealth;
             jumps = maxJumps;
             isRight = true;
             color = sr.color;
-            no = GetComponent<NetworkObject>();
-            gunScript.SetBulletColor(color);
             scale = base.transform.localScale;
         }
         private void FixedUpdate()
@@ -51,10 +50,12 @@ namespace Players
             {
                 base.transform.localScale = new Vector2(base.transform.localScale.x, base.transform.localScale.y + 0.03f);
             }
+            else base.transform.localScale = new Vector2(base.transform.localScale.x, scale.y);
             if(base.transform.localScale.x < scale.x)
             {
                 base.transform.localScale = new Vector2(base.transform.localScale.x + 0.03f, base.transform.localScale.y);
             }
+            else base.transform.localScale = new Vector2(scale.x, base.transform.localScale.y);
         }
         protected void Move(int dir)
         {

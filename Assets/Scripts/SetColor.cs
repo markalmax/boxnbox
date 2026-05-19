@@ -2,8 +2,9 @@ using System;
 using Unity.Netcode;
 using UnityEngine;
 
-public class SetColorBasedOnOwnerId : NetworkBehaviour
+public class SetColor : NetworkBehaviour
 {
+    public Color color;
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -16,7 +17,8 @@ public class SetColorBasedOnOwnerId : NetworkBehaviour
     void SetColorBasedOnOwner()
     {
         UnityEngine.Random.InitState((int)OwnerClientId);
-        GetComponent<Renderer>().material.color = UnityEngine.Random.ColorHSV();
+        color = UnityEngine.Random.ColorHSV(0f, 1f, 1f, 1f, 1f, 1f, 1f, 1f);
+        GetComponent<SpriteRenderer>().color = color;
     }
 }
 

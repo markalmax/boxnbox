@@ -22,17 +22,16 @@ public class Bullet : NetworkBehaviour
         {
             if (actor.NetworkObject.OwnerClientId == ownerID.Value) return;
             actor.Damage(damage.Value);
+            actor.DamageFlash();
             GetComponent<NetworkObject>().Despawn(true);
         }
     }
-    public void Initialize(ulong id, float damageValue)
+    public void Initialize(ulong id, float damageValue, Color c)
     {
         if (!IsServer) return;
         ownerID.Value = id;
         damage.Value = damageValue;
-    }
-    public void SetColor(Color c)
-    {
-        GetComponent<SpriteRenderer>().color = c;
+        GetComponent<SpriteRenderer>().color = c; 
+        transform.localScale *= 1f + damageValue / 15f;
     }
 }
