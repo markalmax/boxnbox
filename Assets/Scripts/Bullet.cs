@@ -9,10 +9,6 @@ public class Bullet : NetworkBehaviour
     private void Start()
     {
         GetComponent<Rigidbody2D>().gravityScale = 0f;
-        if (IsServer)
-        {
-            Destroy(gameObject, 5f);
-        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,15 +19,20 @@ public class Bullet : NetworkBehaviour
             if (actor.NetworkObject.OwnerClientId == ownerID.Value) return;
             actor.Damage(damage.Value);
             actor.DamageFlash();
-            GetComponent<NetworkObject>().Despawn(true);
         }
+        GetComponent<NetworkObject>().Despawn(true);
     }
     public void Initialize(ulong id, float damageValue, Color c)
     {
         if (!IsServer) return;
         ownerID.Value = id;
         damage.Value = damageValue;
-        GetComponent<SpriteRenderer>().color = c; 
+        SetColorClientRpc(c);
         transform.localScale *= 1f + damageValue / 15f;
+    }
+    [ClientRpc]
+    private void SetColorClientRpc(Color c)
+    {
+        GetComponent<SpriteRenderer>().color = c;
     }
 }

@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    void Start()
+    void Awake()
     {
         instance = this;
         QualitySettings.vSyncCount = 0;

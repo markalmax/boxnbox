@@ -29,11 +29,11 @@ namespace Players
             rb = GetComponent<Rigidbody2D>();
             sr = GetComponent<SpriteRenderer>();
             no = GetComponent<NetworkObject>();
-            health.Value = maxHealth;
             jumps = maxJumps;
             isRight = true;
             color = sr.color;
             scale = base.transform.localScale;
+            SetHealth(maxHealth);
         }
         private void FixedUpdate()
         {
@@ -96,12 +96,62 @@ namespace Players
         {
             isMoving = false;
         }
+        public void SetHealth(float healthValue)
+        {
+            if (IsServer)
+            {
+                SetHealthOnServer(healthValue);
+            }
+            else
+            {
+                SetHealthServerRpc(healthValue);
+            }
+        }
+        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+        private void SetHealthServerRpc(float healthValue)
+        {
+            SetHealthOnServer(healthValue);
+        }
+        private void SetHealthOnServer(float healthValue)
+        {
+            health.Value = healthValue;
+        }
         public void Damage(float damage)
         {
+            if (IsServer)
+            {
+                DamageOnServer(damage);
+            }
+            else
+            {
+                DamageServerRpc(damage);
+            }
+        }
+
+        private void DamageOnServer(float damage)
+        {
             health.Value -= damage;
-            DamageFlash();
-            if (health.Value <= 0f) Die();
+            DamageFlashClientRpc();
+            if (health.Value <= 0f) DieClientRpc();
             Debug.Log(no.OwnerClientId + " took " + damage + " damage, health is " + health.Value);
+        }
+
+        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+        private void DamageServerRpc(float damage)
+        {
+            DamageOnServer(damage);
+        }
+
+        [ClientRpc]
+        private void DamageFlashClientRpc()
+        {
+            DamageFlash();
+        }
+
+        [ClientRpc]
+        private void DieClientRpc()
+        {
+            Die();
         }
         public void DamageFlash()
         {
