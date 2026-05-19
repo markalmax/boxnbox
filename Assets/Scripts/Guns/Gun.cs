@@ -1,6 +1,9 @@
 using Unity.Netcode;
 using UnityEngine;
+using Players;
 
+namespace Guns
+{
 public class Gun : NetworkBehaviour
 {
     public GameObject bulletPrefab;
@@ -59,4 +62,5 @@ public class Gun : NetworkBehaviour
         }
         bullet.GetComponent<Rigidbody2D>().linearVelocity = base.transform.up * bulletSpeed + vec;
     }
+}
 }

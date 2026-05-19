@@ -1,5 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
+using Guns;
+
 namespace Players
 {
     public class Actors : NetworkBehaviour

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+
 namespace Players
 {
     public class Player : Actors

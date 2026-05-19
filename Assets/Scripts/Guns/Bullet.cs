@@ -2,6 +2,8 @@ using UnityEngine;
 using Unity.Netcode;
 using Players;
 
+namespace Guns
+{
 public class Bullet : NetworkBehaviour
 {
     public NetworkVariable<float> damage = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
@@ -35,4 +37,5 @@ public class Bullet : NetworkBehaviour
     {
         GetComponent<SpriteRenderer>().color = c;
     }
+}
 }
