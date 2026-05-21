@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using Managers;
 
 namespace Players
 {
@@ -11,7 +12,7 @@ namespace Players
         }
         private void Update()
         {
-            if (!IsOwner || !IsSpawned || !Application.isFocused) return;
+            if (!IsOwner || !IsSpawned || !Application.isFocused || UIManager.instance.activeState!=0) return;
             Vector2 vector = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 lookDir = (vector - (Vector2)transform.position).normalized;
             if (Input.GetKey(KeyCode.A))Move(-1);

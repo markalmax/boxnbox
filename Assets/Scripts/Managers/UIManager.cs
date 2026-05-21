@@ -9,44 +9,69 @@ namespace Managers
     public class UIManager : MonoBehaviour
     {
         public static UIManager instance;
-        [SerializeField]
-        Button m_StartHostButton;
-        [SerializeField]
-        Button m_StartClientButton;
-        [SerializeField]
-        Button m_StartServerButton;
-        [SerializeField]
-        Button m_DisconnectButton;
-        [SerializeField]
-        Button m_ExitButton;
-        [SerializeField]
-        Button m_ResumeButton;
-        [SerializeField]
-        TMP_InputField m_IP;
-        [SerializeField]
-        TMP_InputField m_Port;
-        [SerializeField]
-        TMP_InputField m_PlayerName;
-        [SerializeField]
-        GameObject m_PauseMenu;
+        [SerializeField]Button StartHostButton, StartClientButton, StartServerButton, DisconnectButton, ExitButton, BackButton, SettingsButton, ResumeButton;
+        [SerializeField]TMP_InputField IP, Port, PlayerName;
+        [SerializeField]GameObject Menu, PauseMenu, SettingsMenu;
+        public int activeState = 0;
         void Awake()
         {
             instance = this;
         }
         void Start()
         {
-            m_StartHostButton.onClick.AddListener(StartHost);
-            m_StartClientButton.onClick.AddListener(StartClient);
-            m_StartServerButton.onClick.AddListener(StartServer);
-            m_DisconnectButton.onClick.AddListener(Disconnect);
-            m_ExitButton.onClick.AddListener(Exit);
-            m_ResumeButton.onClick.AddListener(TogglePauseMenu);
-            m_IP.onEndEdit.AddListener(delegate { ChagneIP(); });
-            m_Port.onEndEdit.AddListener(delegate { ChagneIP(); });
+            StartHostButton.onClick.AddListener(StartHost);
+            StartClientButton.onClick.AddListener(StartClient);
+            StartServerButton.onClick.AddListener(StartServer);
+            DisconnectButton.onClick.AddListener(Disconnect);
+            ExitButton.onClick.AddListener(Exit);
+            IP.onEndEdit.AddListener(delegate { ChangeIP(); });
+            Port.onEndEdit.AddListener(delegate { ChangeIP(); });
+            ResumeButton.onClick.AddListener(delegate { OnStateChange(0); }); 
+            BackButton.onClick.AddListener(delegate { OnStateChange(1); });
+            SettingsButton.onClick.AddListener(delegate { OnStateChange(2); });
+        }
+        void OnStateChange(int state)
+        {
+            //0 means no menu, 1 means pause, 2 means settings
+                switch (state)
+                {
+                    case 0:
+                        Menu.SetActive(false);
+                        PauseMenu.SetActive(false);
+                        SettingsMenu.SetActive(false);
+                        activeState = 0;
+                        break;
+                    case 1:
+                        Menu.SetActive(true);
+                        PauseMenu.SetActive(true);
+                        SettingsMenu.SetActive(false);
+                        activeState = 1;
+                        break;
+                    case 2:
+                        Menu.SetActive(true);
+                        PauseMenu.SetActive(false);
+                        SettingsMenu.SetActive(true);
+                        activeState = 2;
+                        break;
+                }
         }
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape)) TogglePauseMenu();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                switch (activeState)
+                {
+                    case 0:
+                        OnStateChange(1);
+                        break;
+                    case 1:
+                        OnStateChange(0);
+                        break;
+                    case 2:
+                        OnStateChange(1);
+                        break;
+                }
+            }
         }
         void StartClient()
         {
@@ -101,51 +126,47 @@ namespace Managers
                 ActivateButtons();
             }
         }
-        void ChagneIP()
+        void ChangeIP()
         {
-            NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>().SetConnectionData(m_IP.text, Convert.ToUInt16(m_Port.text));
+            NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>().SetConnectionData(IP.text, Convert.ToUInt16(Port.text));
         }
         void Exit()
         {
             Application.Quit();
         }
-        public void TogglePauseMenu()
-        {
-            m_PauseMenu.SetActive(!m_PauseMenu.activeSelf);
-        }
         public void DeactivateButtons()
         {
-            m_StartHostButton.interactable = false;
-            m_StartHostButton.gameObject.SetActive(false);
-            m_StartClientButton.interactable = false;
-            m_StartClientButton.gameObject.SetActive(false);
-            m_StartServerButton.interactable = false;
-            m_StartServerButton.gameObject.SetActive(false);
-            m_IP.interactable = false;
-            m_IP.gameObject.SetActive(false);
-            m_Port.interactable = false;
-            m_Port.gameObject.SetActive(false);
-            m_PlayerName.interactable = false;
-            m_PlayerName.gameObject.SetActive(false);
+            StartHostButton.interactable = false;
+            StartHostButton.gameObject.SetActive(false);
+            StartClientButton.interactable = false;
+            StartClientButton.gameObject.SetActive(false);
+            StartServerButton.interactable = false;
+            StartServerButton.gameObject.SetActive(false);
+            IP.interactable = false;
+            IP.gameObject.SetActive(false);
+            Port.interactable = false;
+            Port.gameObject.SetActive(false);
+            PlayerName.interactable = false;
+            PlayerName.gameObject.SetActive(false);
 
-            m_DisconnectButton.interactable = true;
+            DisconnectButton.interactable = true;
         }
         public void ActivateButtons()
         {
-            m_StartHostButton.interactable = true;
-            m_StartHostButton.gameObject.SetActive(true);
-            m_StartClientButton.interactable = true;
-            m_StartClientButton.gameObject.SetActive(true);
-            m_StartServerButton.interactable = true;
-            m_StartServerButton.gameObject.SetActive(true);
-            m_IP.interactable = true;
-            m_IP.gameObject.SetActive(true);
-            m_Port.interactable = true;
-            m_Port.gameObject.SetActive(true);
-            m_PlayerName.interactable = true;
-            m_PlayerName.gameObject.SetActive(true);
+            StartHostButton.interactable = true;
+            StartHostButton.gameObject.SetActive(true);
+            StartClientButton.interactable = true;
+            StartClientButton.gameObject.SetActive(true);
+            StartServerButton.interactable = true;
+            StartServerButton.gameObject.SetActive(true);
+            IP.interactable = true;
+            IP.gameObject.SetActive(true);
+            Port.interactable = true;
+            Port.gameObject.SetActive(true);
+            PlayerName.interactable = true;
+            PlayerName.gameObject.SetActive(true);
 
-            m_DisconnectButton.interactable = false;
+            DisconnectButton.interactable = false;
         }
     }
 }
