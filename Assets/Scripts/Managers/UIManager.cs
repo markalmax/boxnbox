@@ -10,9 +10,9 @@ namespace Managers
     {
         public static UIManager instance;
         [SerializeField]Button StartHostButton, StartClientButton, StartServerButton, DisconnectButton, ExitButton, BackButton, SettingsButton, ResumeButton;
-        [SerializeField]TMP_InputField IP, Port, PlayerName;
+        [SerializeField]TMP_InputField IP, Port, PlayerNameInput;
         [SerializeField]GameObject Menu, PauseMenu, SettingsMenu;
-        public int activeState = 0;
+        public int activeState = 0;public string PlayerName;
         void Awake()
         {
             instance = this;
@@ -26,6 +26,7 @@ namespace Managers
             ExitButton.onClick.AddListener(Exit);
             IP.onEndEdit.AddListener(delegate { ChangeIP(); });
             Port.onEndEdit.AddListener(delegate { ChangeIP(); });
+            PlayerNameInput.onEndEdit.AddListener(delegate { ChangePlayerNameInput(); });
             ResumeButton.onClick.AddListener(delegate { OnStateChange(0); }); 
             BackButton.onClick.AddListener(delegate { OnStateChange(1); });
             SettingsButton.onClick.AddListener(delegate { OnStateChange(2); });
@@ -72,6 +73,10 @@ namespace Managers
                         break;
                 }
             }
+        }
+        void ChangePlayerNameInput()
+        {
+            PlayerName = PlayerNameInput.text;
         }
         void StartClient()
         {
@@ -146,8 +151,8 @@ namespace Managers
             IP.gameObject.SetActive(false);
             Port.interactable = false;
             Port.gameObject.SetActive(false);
-            PlayerName.interactable = false;
-            PlayerName.gameObject.SetActive(false);
+            PlayerNameInput.interactable = false;
+            PlayerNameInput.gameObject.SetActive(false);
 
             DisconnectButton.interactable = true;
         }
@@ -163,8 +168,8 @@ namespace Managers
             IP.gameObject.SetActive(true);
             Port.interactable = true;
             Port.gameObject.SetActive(true);
-            PlayerName.interactable = true;
-            PlayerName.gameObject.SetActive(true);
+            PlayerNameInput.interactable = true;
+            PlayerNameInput.gameObject.SetActive(true);
 
             DisconnectButton.interactable = false;
         }
