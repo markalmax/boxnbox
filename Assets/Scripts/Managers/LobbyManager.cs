@@ -8,6 +8,7 @@ namespace Managers
     public class LobbyManager : NetworkBehaviour
     {
         public static LobbyManager instance;
+        public Transform[] spawnPoints;
         private const int MAX_PLAYERS = 4;
         private bool gameStarted = false;
         [SerializeField]private NetworkList<PlayerData> playerDataList;
@@ -54,6 +55,7 @@ namespace Managers
             }
             response.Approved = true;
             response.CreatePlayerObject = true;
+            response.Position = spawnPoints[NetworkManager.Singleton.ConnectedClientsIds.Count % spawnPoints.Length].position;
             Debug.Log($"Client {request.ClientNetworkId} connection approved. Current players: {NetworkManager.Singleton.ConnectedClientsIds.Count}");
         }
 
@@ -64,6 +66,7 @@ namespace Managers
         }
         void OnClientConnected(ulong clientId)
         {
+            Debug.Log($"Client {clientId} connected.");
             if (NetworkManager.Singleton != null && IsServer)
             {
                 playerDataList.Add(new PlayerData { clientId = clientId });
@@ -73,6 +76,7 @@ namespace Managers
 
         void OnClientDisconnected(ulong clientId)
         {
+            Debug.Log($"Client {clientId} disconnected.");
             if (NetworkManager.Singleton != null && IsServer)
             {
                 playerDataList.Remove(new PlayerData { clientId = clientId });

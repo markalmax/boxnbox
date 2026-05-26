@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 using Guns;
+using Unity.VisualScripting;
 
 namespace Players
 {
@@ -8,9 +9,10 @@ namespace Players
     {
         private bool isRight;
         private bool canJump;
-        private bool CanShoot = true;
+        private bool canShoot = true;
         private bool isMoving;
-        private bool IsGrounded;
+        private bool isGrounded;
+        private bool isDead;
         public float speed = 2700f;
         public float maxSpeed = 14f;
         public float jumpForce = 850f;
@@ -26,6 +28,7 @@ namespace Players
         private Color color;
         public LayerMask ground;
         private Vector2 scale;
+
         protected void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -43,8 +46,8 @@ namespace Players
         }
         private void LateUpdate()
         {
-            IsGrounded = Physics2D.OverlapCircle(transform.position, 0.7f, ground);
-            if(jumps < maxJumps && IsGrounded)
+            isGrounded = Physics2D.OverlapCircle(transform.position, 0.7f, ground);
+            if(jumps < maxJumps && isGrounded)
             {
                 jumps = maxJumps;
             }
@@ -166,11 +169,33 @@ namespace Players
         }
         public void Die()
         {
-            
+            no.Despawn(true);
+        }
+        public void Revive()
+        {
+            if (IsServer)
+            {
+                ReviveOnServer();
+            }
+            else
+            {
+                ReviveServerRpc();
+            }
+        }
+        [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+        private void ReviveServerRpc()
+        {
+            ReviveOnServer();
+        }
+        private void ReviveOnServer()
+        {
+            health.Value = maxHealth;
+            base.transform.position = Vector2.zero;
+            no.Spawn();
         }
         protected void Shoot()
         {
-            if (!CanShoot) return;
+            if (!canShoot) return;
             gunScript.Fire();
             rb.AddForce(-gun.transform.up * gunScript.recoil);
         }
