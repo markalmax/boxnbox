@@ -88,7 +88,7 @@ namespace Managers
             catch (Exception e)
             {
                 Debug.LogError("Error starting client: " + e.Message);
-                ActivateButtons();
+                Disconnect();
             }
         }
 
@@ -96,13 +96,13 @@ namespace Managers
         {
             try
             {
-                NetworkManager.Singleton.StartHost();
+                LobbyManager.instance.StartHost();
                 DeactivateButtons();
             }
             catch (Exception e)
             {
                 Debug.LogError("Error starting host: " + e.Message);
-                ActivateButtons();
+                Disconnect();
             }
         }
         void Disconnect()
@@ -128,7 +128,7 @@ namespace Managers
             catch (Exception e)
             {
                 Debug.LogError("Error starting server: " + e.Message);
-                ActivateButtons();
+                Disconnect();
             }
         }
         void ChangeIP()

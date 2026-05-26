@@ -11,7 +11,7 @@ namespace Players
         private new void Start()
         {
             base.Start();
-            playerName.Value = (FixedString128Bytes)UIManager.instance.PlayerName;
+            if(IsOwner)playerName.Value = (FixedString128Bytes)UIManager.instance.PlayerName;
         }
         private void Update()
         {
