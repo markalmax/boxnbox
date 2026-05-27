@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 using Guns;
+using Audio;
 using Unity.VisualScripting;
 
 namespace Players
@@ -87,6 +88,7 @@ namespace Players
 			}
             rb.linearVelocityY=0;
 			rb.AddForce(Vector2.up * jumpForce);
+            AudioManager.Play("Jump");
 			jumps--;
         }
         private void Friction()
@@ -160,7 +162,7 @@ namespace Players
         }
         public void DamageFlash()
         {
-            sr.color = Color.red;
+            sr.color = new Color(1f,1f,1f,1f);
             Invoke("ResetColor", 0.1f);
         }
         private void ResetColor()
