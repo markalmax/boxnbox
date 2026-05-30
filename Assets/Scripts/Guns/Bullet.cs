@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 using Players;
+using Audio;
 
 namespace Guns
 {
@@ -22,6 +23,7 @@ public class Bullet : NetworkBehaviour
             actor.Damage(damage.Value);
             actor.DamageFlash();
         }
+        else AudioManager.instance.PlayServerRpc("Destroy");
         GetComponent<NetworkObject>().Despawn(true);
     }
     public void Initialize(ulong id, float damageValue, Color c)

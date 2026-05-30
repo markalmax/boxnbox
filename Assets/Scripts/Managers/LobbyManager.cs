@@ -2,7 +2,7 @@ using System;
 using Players;
 using Unity.Netcode;
 using UnityEngine;
-
+using Audio;
 namespace Managers
 {
     public class LobbyManager : NetworkBehaviour
@@ -71,7 +71,7 @@ namespace Managers
             {
                 playerDataList.Add(new PlayerData { clientId = clientId });
             }
-            
+            AudioManager.instance.PlayServerRpc("Join");
         }
 
         void OnClientDisconnected(ulong clientId)
@@ -81,6 +81,7 @@ namespace Managers
             {
                 playerDataList.Remove(new PlayerData { clientId = clientId });
             }
+            AudioManager.instance.PlayServerRpc("Leave");
         }
     }
 }

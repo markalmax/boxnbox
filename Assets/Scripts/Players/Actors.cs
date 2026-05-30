@@ -88,7 +88,7 @@ namespace Players
 			}
             rb.linearVelocityY=0;
 			rb.AddForce(Vector2.up * jumpForce);
-            AudioManager.Play("Jump");
+            AudioManager.instance.PlayServerRpc("Jump");
 			jumps--;
         }
         private void Friction()
@@ -125,6 +125,8 @@ namespace Players
         }
         public void Damage(float damage)
         {
+            if(no.IsOwner) AudioManager.instance.PlayClientRpc("IsHit");
+            else AudioManager.instance.PlayClientRpc("Hit");
             if (IsServer)
             {
                 DamageOnServer(damage);
@@ -199,6 +201,7 @@ namespace Players
         {
             if (!canShoot) return;
             gunScript.Fire();
+            AudioManager.instance.PlayServerRpc("Shoot");
             rb.AddForce(-gun.transform.up * gunScript.recoil);
         }
     }

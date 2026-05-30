@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using Unity.Netcode;
 
 namespace Audio
 {
-	public class AudioManager : MonoBehaviour
+	public class AudioManager : NetworkBehaviour
 	{
 		public Sound[] sounds;
 		public static AudioManager instance;
@@ -17,6 +18,7 @@ namespace Audio
 			Sound[] array = sounds;
 			foreach (Sound sound in array)
 			{
+				if (sound.name ==null)sound.name = sound.clip.name;
 				sound.source = base.gameObject.AddComponent<AudioSource>();
 				sound.source.clip = sound.clip;
 				sound.source.loop = sound.loop;
@@ -35,14 +37,31 @@ namespace Audio
 		{
 			soundDictionary["Song"].source.volume = 1.15f;
 		}
-		public static void Play(string n)
+		[ClientRpc]
+		public void PlayClientRpc(string n)
 		{
 			soundDictionary[n].source.Play();
 		}
-
-		public static void Stop(string n)
+		[Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+		public void PlayServerRpc(string n)
+		{
+			if (IsServer)
+			{
+				PlayClientRpc(n);
+			}
+		}
+		[ClientRpc]
+		public void StopClientRpc(string n)
 		{
 			soundDictionary[n].source.Stop();
+		}
+		[Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+		public void StopServerRpc(string n)
+		{
+			if (IsServer)
+			{
+				StopClientRpc(n);
+			}
 		}
 	}
 }
