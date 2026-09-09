@@ -1,9 +1,7 @@
-using System;
-using Players;
 using Unity.Netcode;
 using UnityEngine;
 
-namespace Managers
+namespace Network
 {
     public class LobbyManager : NetworkBehaviour
     {

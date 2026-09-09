@@ -2,11 +2,10 @@ using UnityEngine;
 using Unity.Netcode;
 using Guns;
 using Audio;
-using Unity.VisualScripting;
 
-namespace Players
+namespace Actors
 {
-    public class Actors : NetworkBehaviour
+    public class Actor : NetworkBehaviour
     {
         private bool isRight;
         private bool canJump;

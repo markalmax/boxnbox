@@ -1,11 +1,11 @@
 using UnityEngine;
 using Unity.Netcode;
 using Unity.Collections;
-using Managers;
+using UI;
 
-namespace Players
+namespace Actors
 {
-    public class Player : Actors
+    public class Player : Actor
     {
         public NetworkVariable<FixedString128Bytes> playerName = new NetworkVariable<FixedString128Bytes>("Player", NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         private new void Start()

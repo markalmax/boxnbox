@@ -1,6 +1,5 @@
 using Unity.Netcode;
 using UnityEngine;
-using Players;
 
 namespace Guns
 {

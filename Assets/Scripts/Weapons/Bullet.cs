@@ -1,6 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
-using Players;
+using Actors;
 
 namespace Guns
 {
@@ -16,7 +16,7 @@ public class Bullet : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        if (collision.gameObject.GetComponent(typeof(Actors)) is Actors actor)
+        if (collision.gameObject.GetComponent(typeof(Actor)) is Actor actor)
         {
             if (actor.NetworkObject.OwnerClientId == ownerID.Value) return;
             actor.Damage(damage.Value);

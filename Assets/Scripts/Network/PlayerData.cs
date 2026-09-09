@@ -1,7 +1,8 @@
 using System;
-using UnityEngine;
 using Unity.Netcode;
 
+namespace Network
+{
 public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
 {
     public ulong clientId;
@@ -15,4 +16,5 @@ public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
     {
         return clientId == other.clientId;
     }
+}
 }

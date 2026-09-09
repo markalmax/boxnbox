@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-namespace Managers
+namespace Network
 {
     public class GameManager : NetworkBehaviour
     {

@@ -3,8 +3,8 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-namespace Managers
+using Network;
+namespace UI
 {
     public class UIManager : MonoBehaviour
     {
