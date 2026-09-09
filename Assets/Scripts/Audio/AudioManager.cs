@@ -33,7 +33,7 @@ namespace Audio
 
 		public void UnmuteMusic()
 		{
-			soundDictionary["Song"].source.volume = 1.15f;
+			soundDictionary["Song"].source.volume = 1f;
 		}
 		public static void Play(string n)
 		{
