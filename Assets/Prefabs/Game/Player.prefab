@@ -17,6 +17,10 @@ GameObject:
   - component: {fileID: 8054457626612814000}
   - component: {fileID: 6028151604737057417}
   - component: {fileID: 6488938049175479417}
+  - component: {fileID: 4277880033039384584}
+  - component: {fileID: 7912908841916205523}
+  - component: {fileID: 8462589459139455232}
+  - component: {fileID: 6753334703931759527}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -184,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 517418809
+  GlobalObjectIdHash: 2170998635
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -287,18 +291,208 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Players.Player
   ShowTopMostFoldoutHeaderGroup: 1
-  speed: 1000
-  maxSpeed: 10
-  jumpForce: 450
-  maxJumps: 1
+  playerName:
+    m_InternalValue:
+      utf8LengthInBytes: 6
+      bytes:
+        offset0000:
+          byte0000: 80
+          byte0001: 108
+          byte0002: 97
+          byte0003: 121
+          byte0004: 101
+          byte0005: 114
+          byte0006: 0
+          byte0007: 0
+          byte0008: 0
+          byte0009: 0
+          byte0010: 0
+          byte0011: 0
+          byte0012: 0
+          byte0013: 0
+          byte0014: 0
+          byte0015: 0
+        offset0016:
+          byte0000: 0
+          byte0001: 0
+          byte0002: 0
+          byte0003: 0
+          byte0004: 0
+          byte0005: 0
+          byte0006: 0
+          byte0007: 0
+          byte0008: 0
+          byte0009: 0
+          byte0010: 0
+          byte0011: 0
+          byte0012: 0
+          byte0013: 0
+          byte0014: 0
+          byte0015: 0
+        offset0032:
+          byte0000: 0
+          byte0001: 0
+          byte0002: 0
+          byte0003: 0
+          byte0004: 0
+          byte0005: 0
+          byte0006: 0
+          byte0007: 0
+          byte0008: 0
+          byte0009: 0
+          byte0010: 0
+          byte0011: 0
+          byte0012: 0
+          byte0013: 0
+          byte0014: 0
+          byte0015: 0
+        offset0048:
+          byte0000: 0
+          byte0001: 0
+          byte0002: 0
+          byte0003: 0
+          byte0004: 0
+          byte0005: 0
+          byte0006: 0
+          byte0007: 0
+          byte0008: 0
+          byte0009: 0
+          byte0010: 0
+          byte0011: 0
+          byte0012: 0
+          byte0013: 0
+          byte0014: 0
+          byte0015: 0
+        offset0064:
+          byte0000: 0
+          byte0001: 0
+          byte0002: 0
+          byte0003: 0
+          byte0004: 0
+          byte0005: 0
+          byte0006: 0
+          byte0007: 0
+          byte0008: 0
+          byte0009: 0
+          byte0010: 0
+          byte0011: 0
+          byte0012: 0
+          byte0013: 0
+          byte0014: 0
+          byte0015: 0
+        offset0080:
+          byte0000: 0
+          byte0001: 0
+          byte0002: 0
+          byte0003: 0
+          byte0004: 0
+          byte0005: 0
+          byte0006: 0
+          byte0007: 0
+          byte0008: 0
+          byte0009: 0
+          byte0010: 0
+          byte0011: 0
+          byte0012: 0
+          byte0013: 0
+          byte0014: 0
+          byte0015: 0
+        offset0096:
+          byte0000: 0
+          byte0001: 0
+          byte0002: 0
+          byte0003: 0
+          byte0004: 0
+          byte0005: 0
+          byte0006: 0
+          byte0007: 0
+          byte0008: 0
+          byte0009: 0
+          byte0010: 0
+          byte0011: 0
+          byte0012: 0
+          byte0013: 0
+          byte0014: 0
+          byte0015: 0
+        byte0112: 0
+        byte0113: 0
+        byte0114: 0
+        byte0115: 0
+        byte0116: 0
+        byte0117: 0
+        byte0118: 0
+        byte0119: 0
+        byte0120: 0
+        byte0121: 0
+        byte0122: 0
+        byte0123: 0
+        byte0124: 0
+        byte0125: 0
+--- !u!114 &4277880033039384584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388593642276972918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b33329408b91049b1322fe0ead4240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Actors.ActorEffects
+  ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &7912908841916205523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388593642276972918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122d226d523bf014980a67aba61c650b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Actors.ActorHealth
+  ShowTopMostFoldoutHeaderGroup: 1
   health:
     m_InternalValue: 100
   maxHealth: 100
-  gun: {fileID: 7084080270209258859}
-  gunScript: {fileID: 1419158230852563601}
+--- !u!114 &8462589459139455232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388593642276972918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5d9ed2b16681844a7d7432f2c8c462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Actors.ActorMovement
+  ShowTopMostFoldoutHeaderGroup: 1
+  speed: 2700
+  maxSpeed: 14
+  jumpForce: 850
+  maxJumps: 3
   ground:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &6753334703931759527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388593642276972918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6bde4dade222524aa1e91b117eae994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Actors.ActorWeapon
+  ShowTopMostFoldoutHeaderGroup: 1
+  canShoot: 1
+  gun: {fileID: 7084080270209258859}
+  gunScript: {fileID: 1419158230852563601}
 --- !u!1 &7084080270209258859
 GameObject:
   m_ObjectHideFlags: 0

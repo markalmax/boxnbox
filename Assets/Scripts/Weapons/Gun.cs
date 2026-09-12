@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-namespace Guns
+namespace Weapons
 {
 public class Gun : NetworkBehaviour
 {

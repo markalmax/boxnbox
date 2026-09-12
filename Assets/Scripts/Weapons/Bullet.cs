@@ -2,7 +2,7 @@ using UnityEngine;
 using Unity.Netcode;
 using Actors;
 
-namespace Guns
+namespace Weapons
 {
 public class Bullet : NetworkBehaviour
 {
@@ -16,7 +16,7 @@ public class Bullet : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        if (collision.gameObject.GetComponent(typeof(Actor)) is Actor actor)
+        if (collision.gameObject.GetComponent(typeof(ActorBase)) is ActorBase actor)
         {
             if (actor.NetworkObject.OwnerClientId == ownerID.Value) return;
             actor.Damage(damage.Value);
